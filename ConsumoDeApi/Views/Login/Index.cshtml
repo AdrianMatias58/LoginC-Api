@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión - Mi App</title>
+
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body style="background-color: #f0f2f5;">
+
+    <div class="login-wrapper">
+        <div class="login-box">
+            <h2 class="login-title">Bienvenido</h2>
+
+            <form action="/Login/login" method="post">
+
+                <div class="input-group">
+                    <label for="Email">Correo Electrónico</label>
+                    <input type="email" id="Email" name="username" placeholder="ejemplo@correo.com" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="Password">Contraseña</label>
+                    <input type="password" id="Password" name="password" placeholder="********" required />
+                </div>
+
+                <button type="submit" class="btn-primary-block">Ingresar</button>
+
+            </form>
+
+            <div class="login-footer">
+                <span>¿No tienes una cuenta?</span>
+                <a href="/Login/Register">Regístrate aquí</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

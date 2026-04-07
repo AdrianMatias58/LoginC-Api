@@ -1,0 +1,30 @@
+﻿<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Mi App</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Register.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Perfil.css" asp-append-version="true" />
+</head>
+<body>
+
+    <header class="navbar-header">
+        <div class="container-fluid">
+            <span class="brand-name">Sistema MVC</span>
+
+            <nav class="user-nav">
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    <button type="submit" class="logout-link">Cerrar Sesión</button>
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <main role="main" class="container-body">
+            @RenderBody()
+        </main>
+    </div>
+</body>
+</html>

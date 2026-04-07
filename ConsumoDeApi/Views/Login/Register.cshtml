@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="login-wrapper">
+    <div class="login-box">
+        <h2 class="login-title">Registro de Usuario</h2>
+
+        <form action="/Login/Regitrar" method="post">
+
+            <div class="input-group">
+                <label for="Nombre">Nombre</label>
+                <input type="text" id="Nombre" name="Nombre" placeholder="Tu nombre" />
+            </div>
+
+            <div class="input-group">
+                <label for="Apellido">Apellido</label>
+                <input type="text" id="Apellido" name="Apellido" placeholder="Tu apellido" />
+            </div>
+
+            <div class="input-group">
+                <label for="Email">Correo Electrónico</label>
+                <input type="email" id="Email" name="Email" placeholder="correo@ejemplo.com" />
+            </div>
+
+            <div class="input-group">
+                <label for="Identificacion">Identificación (DNI/ID)</label>
+                <input type="text" id="Identificacion" name="Identificacion" placeholder="Número de ID" />
+            </div>
+
+            <div class="input-group">
+                <label for="Password">Contraseña</label>
+                <input type="password" id="Password" name="Password" placeholder="********" />
+            </div>
+
+            <button type="submit" class="btn-primary-block">Crear Cuenta</button>
+
+        </form>
+
+        <div class="login-footer">
+            <span>¿Ya tienes una cuenta?</span>
+            <a href="/Login/Index">Iniciar Sesión</a>
+        </div>
+    </div>
+</div>
