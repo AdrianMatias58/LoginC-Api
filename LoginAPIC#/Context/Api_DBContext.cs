@@ -5,7 +5,7 @@ namespace LoginAPIC_.Context
 {
     public class Api_DBContext:DbContext
     {
-        public Api_DBContext(DbContextOptions<DbContext> op)
+        public Api_DBContext(DbContextOptions<Api_DBContext> op)
             : base(op)
         {
                
