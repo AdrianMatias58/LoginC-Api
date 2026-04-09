@@ -14,7 +14,6 @@
             string Identificacion
         );
         public record UserReturnDto(
-            string Username,
             string Email,
             string Nombre,
             string Apellido,

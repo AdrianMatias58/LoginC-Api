@@ -15,7 +15,7 @@ namespace ConsumoDeApi.Controllers
         {
 
             _httpClient = fact.CreateClient();
-            _httpClient.BaseAddress = new Uri("https://api.tuservidor.com/"); 
+            _httpClient.BaseAddress = new Uri("https://localhost:7274/"); 
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
@@ -35,22 +35,49 @@ namespace ConsumoDeApi.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> login(string username, string password)
+        public async Task<IActionResult> Login(string email, string password)
         {
-            return null;
+            var body = new { email, password };
+            var content = new StringContent(JsonSerializer.Serialize(body),Encoding.UTF8,"application/json");
+            var response = await _httpClient.PostAsync("User/Login", content);
+            if (!response.IsSuccessStatusCode)
+            {
+                ViewBag.Error = "Email o contraseña incorrectos.";
+                return View("Index");
+            }
+            var json = await response.Content.ReadAsStringAsync();
+            var user = JsonSerializer.Deserialize<User>(json,new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            HttpContext.Session.SetString("Nombre", user!.Nombre);
+            HttpContext.Session.SetString("Email", user.Email);
+            HttpContext.Session.SetString("Apellido", user.Apellido);
+            HttpContext.Session.SetString("Identificacion", user.Identificacion);
+            return RedirectToAction("VistaPosLog");
         }
+
         [HttpGet]
-        public async Task<IActionResult> logout()
+        public IActionResult Logout()
         {
-            return null;
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
         }
+
         [HttpPost]
-        public async Task<IActionResult> Regitrar (User user)
+        public async Task<IActionResult> Registrar(User user)
         {
-            string JsonUser = JsonSerializer.Serialize(user);
-            var content = new StringContent(JsonUser, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("", content);
-            return null;
+            var content = new StringContent(
+                JsonSerializer.Serialize(user),
+                Encoding.UTF8,
+                "application/json"
+            );
+            var response = await _httpClient.PostAsync("User/Register", content);
+            if (!response.IsSuccessStatusCode)
+            {
+                ViewBag.Error = "Error al registrar el usuario.";
+                return View("Register");
+            }
+            return RedirectToAction("Index"); 
         }
     }
 }
+

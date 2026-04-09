@@ -1,5 +1,6 @@
 
 using LoginAPIC_.Context;
+using LoginAPIC_.Servicio;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +11,9 @@ var cn = builder.Configuration.GetConnectionString("DbConexion");
 builder.Services.AddDbContext<Api_DBContext>(
     op => op.UseSqlServer(cn)
 );
-  
+builder.Services.AddScoped<UserServ>();
 builder.Services.AddControllers();
+builder.Services.AddDataProtection();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

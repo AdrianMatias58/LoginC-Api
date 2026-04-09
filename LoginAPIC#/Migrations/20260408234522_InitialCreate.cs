@@ -11,7 +11,7 @@ namespace LoginAPIC_.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     IdUsuario = table.Column<int>(type: "int", nullable: false)
@@ -24,7 +24,7 @@ namespace LoginAPIC_.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.IdUsuario);
+                    table.PrimaryKey("PK_User", x => x.IdUsuario);
                 });
         }
 
@@ -32,7 +32,7 @@ namespace LoginAPIC_.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
         }
     }
 }

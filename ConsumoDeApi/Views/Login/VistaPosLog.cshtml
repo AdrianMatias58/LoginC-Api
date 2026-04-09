@@ -1,44 +1,36 @@
-﻿
-@{
-    ViewData["Title"] = "VistaPosLog";
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var nombre = Context.Session.GetString("Nombre");
+    var email = Context.Session.GetString("Email");
 }
 
-<div class="profile-container">
-    <div class="profile-card">
-        <div class="profile-header">
-            <div class="avatar-circle">
-                @Model.Nombre.Substring(0, 1).ToUpper()
-            </div>
-            <h2>Bienvenido, @Model.Nombre</h2>
-            <p class="subtitle">Datos recuperados de la API</p>
-        </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Inicio</title>
 
-        <div class="profile-details">
-            <div class="detail-item">
-                <span class="label">Nombre Completo:</span>
-                <span class="value">@Model.Nombre @Model.Apellido</span>
-            </div>
+</head>
+<body style="background-color: #f0f2f5;">
 
-            <div class="detail-item">
-                <span class="label">Correo Electrónico:</span>
-                <span class="value">@Model.Email</span>
-            </div>
+    <div class="login-wrapper">
+        <div class="login-box">
 
-            <div class="detail-item">
-                <span class="label">Identificación:</span>
-                <span class="value">@Model.Identificacion</span>
-            </div>
+            @if (nombre == null)
+            {
+                <p>No hay sesión activa.</p>
+                <a href="/Login/Index">Volver al login</a>
+            }
+            else
+            {
+                <h2>¡Bienvenido, @nombre!</h2>
+                <p>Email: @email</p>
+                <br />
+                <a href="/Login/Logout">Cerrar sesión</a>
+            }
 
-            <div class="detail-item">
-                <span class="label">ID de Usuario:</span>
-                <span class="value">#@Model.IdUsuario</span>
-            </div>
-        </div>
-
-        <div class="profile-actions">
-            <a href="/Home/Index" class="btn-secondary">Ir al Inicio</a>
         </div>
     </div>
-</div>
 
+</body>
+</html>
